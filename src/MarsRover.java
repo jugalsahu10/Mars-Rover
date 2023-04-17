@@ -84,21 +84,25 @@ public class MarsRover {
             for (int i = 0; i < instructions.length(); i++) {
                 char instruction = instructions.charAt(i);
 
-                switch (instruction) {
-                    case 'L':
-                        position.turnLeft();
-                        break;
-                    case 'R':
-                        position.turnRight();
-                        break;
-                    case 'M':
-                        position.move();
-                        break;
-                    default:
-                        throw new RuntimeException("Invalid instruction" + instruction);
-                }
+                executeSingle(position, instruction);
             }
             return position;
+        }
+
+        private void executeSingle(Position position, char instruction) {
+            switch (instruction) {
+                case 'L':
+                    position.turnLeft();
+                    break;
+                case 'R':
+                    position.turnRight();
+                    break;
+                case 'M':
+                    position.move();
+                    break;
+                default:
+                    throw new RuntimeException("Invalid instruction" + instruction);
+            }
         }
     }
 
@@ -121,20 +125,25 @@ public class MarsRover {
 
         List<Position> roversPositions = new ArrayList<>();
         for (int i = 1; i < inputLines.size(); i += 2) {
-            // position
-            String[] roverPosition = Arrays.stream(inputLines.get(i).split(" ")).toArray(String[]::new);
-            Integer roverPositionX = Integer.parseInt(roverPosition[0]);
-            Integer roverPositionY = Integer.parseInt(roverPosition[1]);
-            String roverPositionN = roverPosition[2];
-            Position position = new Position(roverPositionX, roverPositionY, Direction.valueOf(roverPositionN));
-
-            // instruction
-            String instructionsLine = inputLines.get(i + 1);
-            Instructions instructions = new Instructions(instructionsLine);
-            Position resultantPosition = instructions.execute(position);
+            Position resultantPosition = getResultantPosition(inputLines, i);
             roversPositions.add(resultantPosition);
         }
         return roversPositions;
+    }
+
+    private static Position getResultantPosition(List<String> inputLines, int i) {
+        // position
+        String[] roverPosition = Arrays.stream(inputLines.get(i).split(" ")).toArray(String[]::new);
+        Integer roverPositionX = Integer.parseInt(roverPosition[0]);
+        Integer roverPositionY = Integer.parseInt(roverPosition[1]);
+        String roverPositionN = roverPosition[2];
+        Position position = new Position(roverPositionX, roverPositionY, Direction.valueOf(roverPositionN));
+
+        // instruction
+        String instructionsLine = inputLines.get(i + 1);
+        Instructions instructions = new Instructions(instructionsLine);
+        Position resultantPosition = instructions.execute(position);
+        return resultantPosition;
     }
 
     public static void main(String[] args) {
