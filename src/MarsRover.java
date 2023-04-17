@@ -125,33 +125,30 @@ public class MarsRover {
 
         List<Position> roversPositions = new ArrayList<>();
         for (int i = 1; i < inputLines.size(); i += 2) {
-            Position resultantPosition = getResultantPosition(inputLines, i);
+            Position resultantPosition = getResultantPosition(inputLines.get(i), inputLines.get(i + 1));
             roversPositions.add(resultantPosition);
         }
         return roversPositions;
     }
 
-    private static Position getResultantPosition(List<String> inputLines, int i) {
-        // position
-        String[] roverPosition = Arrays.stream(inputLines.get(i).split(" ")).toArray(String[]::new);
-        Integer roverPositionX = Integer.parseInt(roverPosition[0]);
-        Integer roverPositionY = Integer.parseInt(roverPosition[1]);
-        String roverPositionN = roverPosition[2];
-        Position position = new Position(roverPositionX, roverPositionY, Direction.valueOf(roverPositionN));
-
-        // instruction
-        String instructionsLine = inputLines.get(i + 1);
+    private static Position getResultantPosition(String positionStr, String instructionsLine) {
+        Position position = getPosition(positionStr);
         Instructions instructions = new Instructions(instructionsLine);
         Position resultantPosition = instructions.execute(position);
         return resultantPosition;
     }
 
+    private static Position getPosition(String positionStr) {
+        String[] roverPosition = Arrays.stream(positionStr.split(" ")).toArray(String[]::new);
+        Integer roverPositionX = Integer.parseInt(roverPosition[0]);
+        Integer roverPositionY = Integer.parseInt(roverPosition[1]);
+        String roverPositionN = roverPosition[2];
+        Position position = new Position(roverPositionX, roverPositionY, Direction.valueOf(roverPositionN));
+        return position;
+    }
+
     public static void main(String[] args) {
         List<String> inputLines = readFile("resource/testcase-01.txt");
-        System.out.println("Input:");
-        for (int i = 0; i < inputLines.size(); i++) {
-            System.out.println(inputLines.get(i));
-        }
         List<Position> solutionList = getSolution(inputLines);
         for (Position resultantPosition : solutionList) {
             System.out.println(resultantPosition);
