@@ -12,7 +12,7 @@ public class Plateau {
         this.yCoordinate = yCoordinate;
     }
 
-    public Boolean hasMovedOut(Integer xCoordinate, Integer yCoordinate) {
+    public boolean hasMovedOut(Integer xCoordinate, Integer yCoordinate) {
         return !isCoordinateInsidePlateau(xCoordinate, yCoordinate);
     }
 

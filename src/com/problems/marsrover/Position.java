@@ -1,11 +1,14 @@
 package com.problems.marsrover;
 
+/**
+ * For each rover maintain its position for xCoordinate, xCoordinate and direction. Also keep track if rover has moved out of plateau. Provide methods to perform turnLeft, turnRight and move
+ */
 public class Position {
     private Plateau plateau;
     private Integer xCoordinate;
     private Integer yCoordinate;
     private Direction direction;
-    private Boolean movedOutOfGrid = false;
+    private boolean movedOutOfGrid = false;
 
     public Position(Plateau plateau, Integer xCoordinate, Integer yCoordinate, Direction direction) {
         this.plateau = plateau;

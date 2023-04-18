@@ -4,6 +4,9 @@ import exceptions.CustomException;
 
 import java.util.Arrays;
 
+/**
+ * Maintains 4 directions (North, East, South, West) with its direction upon turning left or right. Also maintains change in coordinates if moved in any directions
+ */
 public enum Direction {
     EAST("E", "S", "N", 1, 0),
     SOUTH("S", "W", "E", 0, -1),
