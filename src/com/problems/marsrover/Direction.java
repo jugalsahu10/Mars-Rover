@@ -4,9 +4,6 @@ import exceptions.CustomException;
 
 import java.util.Arrays;
 
-/**
- * proper explanation
- */
 public enum Direction {
     EAST("E", "S", "N", 1, 0),
     SOUTH("S", "W", "E", 0, -1),

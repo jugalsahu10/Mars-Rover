@@ -39,12 +39,13 @@ public class MarsRover {
     }
 
     /**
-     * This is parse input lines and find each rover's final coordinates
+     * 1. Parse to input lines
+     * 2. Find each rover's final coordinates
      *
      * @param inputLines
      * @return
      */
-    public static List<Position> getSolution(List<String> inputLines) {
+    public static List<Position> getAllRoversFinalCoordinates(List<String> inputLines) {
         if (inputLines.isEmpty()) {
             return Collections.emptyList();
         }
@@ -57,7 +58,7 @@ public class MarsRover {
         for (int i = 1; i < inputLines.size(); i += 2) {
             String roverPositionInput = inputLines.get(i);
             String roverInstructionsInput = inputLines.get(i + 1);
-            Position roverFinalCoordinates = getFinalCoordinates(plateau, roverPositionInput, roverInstructionsInput);
+            Position roverFinalCoordinates = getRoverFinalCoordinates(plateau, roverPositionInput, roverInstructionsInput);
             roversFinalCoordinates.add(roverFinalCoordinates);
         }
         return roversFinalCoordinates;
@@ -71,7 +72,7 @@ public class MarsRover {
      * @param roverInstructionsInput
      * @return
      */
-    private static Position getFinalCoordinates(Plateau plateau, String roverPositionInput, String roverInstructionsInput) {
+    private static Position getRoverFinalCoordinates(Plateau plateau, String roverPositionInput, String roverInstructionsInput) {
         Position roverPosition = getPosition(plateau, roverPositionInput);
         Instructions instructions = new Instructions(roverInstructionsInput);
         instructions.execute(roverPosition);
@@ -104,10 +105,14 @@ public class MarsRover {
         return new Position(plateau, roverPositionX, roverPositionY, Direction.parse(roverPositionN));
     }
 
-
+    /**
+     * Starter
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         List<String> inputLines = readFile("resource/testcase-01.txt");
-        List<Position> solutionList = getSolution(inputLines);
+        List<Position> solutionList = getAllRoversFinalCoordinates(inputLines);
         for (Position resultantPosition : solutionList) {
             System.out.println(resultantPosition);
         }
