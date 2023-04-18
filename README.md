@@ -1,3 +1,6 @@
+**[Note] Assumption: **
+Each rover doesn't obstruct each other while navigating or in other words a position in plateau grid can occupy as many rovers.
+
 **Mars Rover**
 
 A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular,
