@@ -24,12 +24,12 @@ rover won't start to move until the first one has finished moving.
 The output for each rover should be its final co-ordinates and heading Sample Input and Output
 
 **Test Input**
-5 5
-1 2 N
-LMLMLMLMM
-3 3 E
-MMRMMRMRRM
+5 5  
+1 2 N  
+LMLMLMLMM  
+3 3 E  
+MMRMMRMRRM  
 
 **__Expected Output**__
-1 3 N
-5 1 E
+1 3 N  
+5 1 E  
