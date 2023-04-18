@@ -39,7 +39,7 @@ public class MarsRover {
     }
 
     /**
-     * 1. Parse to input lines
+     * 1. Parse input lines
      * 2. Find each rover's final coordinates
      *
      * @param inputLines
